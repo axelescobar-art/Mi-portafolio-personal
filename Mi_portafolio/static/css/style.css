@@ -1,328 +1,456 @@
-/* ===================================================
-   VARIABLES DE COLOR Y CONFIGURACIÓN BASE (CITY OF TEARS)
-   =================================================== */
+/* STREAMING_CHUNK:Definiendo variables globales y reseteo base... */
 :root {
-    --bg-principal: #05070d;
-    --bg-tarjeta: rgba(12, 18, 32, 0.82);
-    --bg-tarjeta-hover: rgba(20, 30, 52, 0.92);
-
-    --color-primario: #2b598f;              /* Azul cobalto base */
-    --color-brillante: #38bdf8;             /* Cian reluciente de la lluvia */
-    --color-acento: #818cf8;                /* Azul índigo suave */
-
-    --texto-principal: #f1f5f9;
-    --texto-secundario: #94a3b8;
-    
-    --borde-seda: rgba(56, 189, 248, 0.25);
-    --borde-brillante: rgba(56, 189, 248, 0.8);
-    --sombra-glow: 0 0 18px rgba(56, 189, 248, 0.4);
-
-    --fuente-titulos: 'Cinzel', serif;
+    --color-fondo: #0a0e14;
+    --color-tarjeta: rgba(15, 23, 36, 0.75);
+    --color-tarjeta-hover: rgba(22, 34, 52, 0.85);
+    --color-borde: rgba(0, 212, 255, 0.2);
+    --color-borde-brillo: rgba(0, 212, 255, 0.6);
+    --color-azul-hk: #00d4ff;
+    --color-azul-oscuro: #091a2a;
+    --color-texto: #e2e8f0;
+    --color-texto-secundario: #94a3b8;
+    --fuente-titulo: 'Cinzel', serif;
     --fuente-cuerpo: 'Plus Jakarta Sans', sans-serif;
+    --transicion-suave: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* {
-    box-sizing: border-box;
+*{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: var(--bg-principal);
-    
-    /* Superposición de capas oscuras para atenuar la imagen de fondo */
-    background-image: 
-        linear-gradient(rgba(5, 7, 13, 0.84), rgba(5, 7, 13, 0.88)),
-        url('../images/fondo\ en\ negro.png');
-        
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    
-    color: var(--texto-principal);
     font-family: var(--fuente-cuerpo);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
     line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
 }
 
-/* ===================================================
-   HEADER Y MENÚ DE NAVEGACIÓN
-   =================================================== */
+/* STREAMING_CHUNK:Configurando el fondo con faros y canvas de lluvia... */
+.contenedor-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.imagen-fondo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+    filter: brightness(0.7) contrast(1.2);
+}
+
+/* Faros luminosos estilo Hollow Knight */
+.faro {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.4) 0%, rgba(0, 212, 255, 0) 70%);
+    filter: blur(15px);
+    pointer-events: none;
+    animation: pulsoFaro 4s infinite alternate ease-in-out;
+}
+
+.faro-izq-1 {
+    top: 15%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.faro-izq-2 {
+    top: 60%;
+    left: 5%;
+    animation-delay: 1s;
+}
+
+.faro-der-1 {
+    top: 25%;
+    right: 12%;
+    animation-delay: 2s;
+}
+
+.faro-der-2 {
+    top: 70%;
+    right: 8%;
+    animation-delay: 0.5s;
+}
+
+@keyframes pulsoFaro {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1.3);
+        opacity: 0.9;
+    }
+}
+
+#bg-particulas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* STREAMING_CHUNK:Estilizando la barra de navegación fija... */
 .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: rgba(5, 7, 13, 0.9);
-    border-bottom: 1px solid var(--borde-seda);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(8px);
+    padding: 1.2rem 8%;
+    background: rgba(10, 14, 20, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-borde);
+    z-index: 1000;
+    transition: var(--transicion-suave);
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    font-family: var(--fuente-titulos);
-    font-weight: 700;
-    color: var(--texto-principal);
+    gap: 12px;
+    font-family: var(--fuente-titulo);
+    font-size: 1.3rem;
     letter-spacing: 2px;
+    color: var(--color-texto);
 }
 
 .logo-icono {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
-    filter: drop-shadow(0 0 6px var(--color-brillante));
-    transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.logo:hover .logo-icono {
-    transform: scale(1.1) rotate(-5deg);
-    filter: drop-shadow(0 0 12px var(--color-brillante));
+    filter: drop-shadow(0 0 5px var(--color-azul-hk));
 }
 
 .nav-menu {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .nav-menu a {
-    color: var(--texto-secundario);
+    color: var(--color-texto-secundario);
     text-decoration: none;
+    font-family: var(--fuente-titulo);
     font-size: 0.95rem;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    letter-spacing: 1px;
+    transition: var(--transicion-suave);
+    position: relative;
 }
 
 .nav-menu a:hover {
-    color: var(--color-brillante);
-    text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+    color: var(--color-azul-hk);
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-azul-hk);
+    box-shadow: 0 0 8px var(--color-azul-hk);
+    transition: var(--transicion-suave);
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
 }
 
 .menu-toggle {
     display: none;
     background: none;
-    border: 1px solid var(--borde-seda);
-    color: var(--texto-principal);
-    font-size: 1.2rem;
-    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--color-borde);
+    color: var(--color-texto);
+    font-size: 1.5rem;
+    padding: 4px 10px;
     border-radius: 6px;
     cursor: pointer;
 }
 
-/* ===================================================
-   SECCIONES Y ENCABEZADOS
-   =================================================== */
+/* STREAMING_CHUNK:Estructuración general de secciones y tarjetas... */
+main {
+    padding-top: 90px;
+}
+
 .seccion {
     max-width: 1100px;
-    margin: 0 auto;
-    padding: 4rem 1.5rem;
+    margin: 0 auto 5rem auto;
+    padding: 0 1.5rem;
 }
 
-h2 {
-    font-family: var(--fuente-titulos);
-    text-align: center;
+.seccion h2 {
+    font-family: var(--fuente-titulo);
     font-size: 2.2rem;
+    text-align: center;
     margin-bottom: 2.5rem;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
+    color: #fff;
+    text-shadow: 0 0 12px rgba(0, 212, 255, 0.5);
+    position: relative;
 }
 
-h2::after {
-    content: '';
+.seccion h2::after {
+    content: '✦';
     display: block;
-    width: 100px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--color-brillante), transparent);
-    margin: 0.6rem auto 0;
-    box-shadow: 0 0 8px var(--color-brillante);
+    font-size: 1rem;
+    color: var(--color-azul-hk);
+    margin-top: 0.3rem;
+    opacity: 0.8;
 }
 
-/* ===================================================
-   COMPONENTES: TARJETAS Y HERO
-   =================================================== */
 .tarjeta {
-    background: var(--bg-tarjeta);
-    border: 1px solid var(--borde-seda);
+    background: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
     border-radius: 12px;
     padding: 2rem;
     backdrop-filter: blur(10px);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: var(--transicion-suave);
+}
+
+.tarjeta:hover {
+    border-color: var(--color-borde-brillo);
+    box-shadow: 0 10px 35px 0 rgba(0, 212, 255, 0.15);
+}
+
+/* STREAMING_CHUNK:Estilizando sección Hero e imagen con zoom... */
+.hero {
+    margin-top: 2rem;
 }
 
 .hero-contenido {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
     align-items: center;
-    justify-content: space-between;
-    gap: 2.5rem;
+    gap: 3rem;
 }
 
-.hero-texto {
-    flex: 1;
+.subtitulo-seda {
+    font-family: var(--fuente-titulo);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    color: var(--color-azul-hk);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.hero-texto h1 {
+    font-family: var(--fuente-titulo);
+    font-size: 3.2rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.perfil {
+    color: var(--color-texto-secundario);
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+}
+
+.hero-botones {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    font-family: var(--fuente-titulo);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: var(--transicion-suave);
+    cursor: pointer;
+}
+
+.btn-primario {
+    background: rgba(0, 212, 255, 0.15);
+    color: var(--color-azul-hk);
+    border: 1px solid var(--color-azul-hk);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.2);
+}
+
+.btn-primario:hover {
+    background: var(--color-azul-hk);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+}
+
+.btn-secundario {
+    background: transparent;
+    color: var(--color-texto-secundario);
+    border: 1px solid var(--color-borde);
+}
+
+.btn-secundario:hover {
+    color: #fff;
+    border-color: #fff;
 }
 
 .hero-imagen {
-    flex-shrink: 0;
-    width: 210px;
-    height: 210px;
-    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     overflow: hidden;
-    border: 2px solid var(--color-brillante);
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
-    background-color: var(--bg-tarjeta);
-    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-}
-
-.hero-imagen:hover {
-    transform: scale(1.04);
-    border-color: #7dd3fc;
-    box-shadow: 0 0 35px rgba(56, 189, 248, 0.7);
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+    border: 2px solid var(--color-borde-brillo);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.25);
 }
 
 .hero-imagen img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
-.subtitulo-seda {
-    color: var(--color-brillante);
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    font-weight: 600;
-    text-shadow: 0 0 6px rgba(56, 189, 248, 0.4);
+.hero-imagen:hover img {
+    transform: scale(1.1);
 }
 
-.hero h1 {
-    font-family: var(--fuente-titulos);
-    font-size: 2.8rem;
-    margin: 0.5rem 0 1rem;
+/* STREAMING_CHUNK:Estilizando la sección SOBRE MÍ... */
+.tarjeta-sobre-mi {
+    line-height: 1.8;
+    font-size: 1.05rem;
 }
 
-.perfil {
-    color: var(--texto-secundario);
-    margin-bottom: 1.5rem;
-    max-width: 700px;
+.tarjeta-sobre-mi p {
+    margin-bottom: 1.2rem;
+    color: var(--color-texto-secundario);
 }
 
-/* BOTONES */
-.hero-botones,
-.redes,
-.enlaces-proyecto {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-}
-
-.btn {
-    display: inline-block;
-    padding: 0.6rem 1.4rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-}
-
-.btn-primario {
-    background-color: var(--color-primario);
+.tarjeta-sobre-mi strong {
     color: #fff;
-    border: 1px solid var(--color-brillante);
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
 }
 
-.btn-primario:hover {
-    background-color: var(--color-brillante);
-    color: #05070d;
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+.texto-azul {
+    color: var(--color-azul-hk);
+    font-weight: 600;
 }
 
-.btn-secundario {
-    background: transparent;
-    color: var(--texto-principal);
-    border: 1px solid var(--borde-seda);
+.linea-divisora {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-borde-brillo), transparent);
+    margin: 2rem 0;
 }
 
-.btn-secundario:hover {
-    border-color: var(--color-brillante);
-    color: var(--color-brillante);
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+.grid-detalles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    text-align: center;
 }
 
-/* ===================================================
-   GRILLA DE HABILIDADES (BRILLO CIAN AL PASAR EL MOUSE)
-   =================================================== */
+.caja-detalle {
+    background: rgba(9, 26, 42, 0.6);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-borde);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.etiqueta-det {
+    font-family: var(--fuente-titulo);
+    font-size: 0.75rem;
+    color: var(--color-texto-secundario);
+    letter-spacing: 2px;
+}
+
+.valor-det {
+    font-weight: 600;
+    color: #fff;
+}
+
+.texto-destacado {
+    color: var(--color-azul-hk);
+}
+
+/* STREAMING_CHUNK:Estilizando sección Habilidades... */
 .instruccion-habilidades {
     text-align: center;
-    color: var(--texto-secundario);
+    color: var(--color-texto-secundario);
     font-size: 0.9rem;
-    margin-top: -1.5rem;
     margin-bottom: 1.5rem;
 }
 
 .grid-habilidades {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 1.2rem;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .tarjeta-habilidad {
-    background: var(--bg-tarjeta);
-    border: 1px solid var(--borde-seda);
-    border-radius: 8px;
+    background: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
     padding: 1.2rem;
     text-align: center;
-    font-weight: 600;
+    border-radius: 10px;
+    font-family: var(--fuente-titulo);
+    font-size: 1rem;
     cursor: pointer;
+    transition: var(--transicion-suave);
     user-select: none;
-    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
 }
 
-.tarjeta-habilidad:hover {
-    transform: translateY(-5px);
-    border-color: var(--color-brillante);
-    background: rgba(56, 189, 248, 0.1);
-    color: #ffffff;
-    box-shadow: 0 0 18px rgba(56, 189, 248, 0.45), inset 0 0 10px rgba(56, 189, 248, 0.2);
-}
-
+.tarjeta-habilidad:hover,
 .tarjeta-habilidad.activa {
-    border-color: var(--color-brillante);
-    background: rgba(56, 189, 248, 0.2);
-    color: #ffffff;
-    box-shadow: 0 0 22px rgba(56, 189, 248, 0.65), inset 0 0 15px rgba(56, 189, 248, 0.3);
+    background: rgba(0, 212, 255, 0.1);
+    border-color: var(--color-azul-hk);
+    color: var(--color-azul-hk);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+    transform: translateY(-3px);
 }
 
 .panel-info-habilidad {
-    margin-top: 1.5rem;
-    padding: 1.2rem;
-    background: var(--bg-tarjeta);
-    border: 1px solid var(--borde-seda);
-    border-radius: 8px;
+    background: rgba(9, 26, 42, 0.8);
+    border: 1px solid var(--color-borde-brillo);
+    border-radius: 10px;
+    padding: 1.5rem;
     text-align: center;
-    color: var(--texto-principal);
-    min-height: 70px;
+    min-height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    color: var(--color-texto);
 }
 
-.panel-info-habilidad:hover {
-    border-color: rgba(56, 189, 248, 0.5);
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
-}
-
-.panel-info-habilidad strong {
-    color: var(--color-brillante);
-    text-shadow: 0 0 6px rgba(56, 189, 248, 0.4);
-}
-
-/* ===================================================
-   GRILLA DE PROYECTOS Y REPRODUCTOR DE VIDEO
-   =================================================== */
+/* STREAMING_CHUNK:Estilizando la sección de Proyectos y Video... */
 .grid-proyectos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -333,21 +461,14 @@ h2::after {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.tarjeta-proyecto:hover {
-    transform: translateY(-5px);
-    border-color: var(--color-brillante);
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
 }
 
 .contenedor-video {
     width: 100%;
     border-radius: 8px;
     overflow: hidden;
-    background-color: #000;
-    border: 1px solid rgba(56, 189, 248, 0.2);
+    border: 1px solid var(--color-borde);
+    background: #000;
 }
 
 .contenedor-video video {
@@ -357,189 +478,233 @@ h2::after {
 }
 
 .tarjeta-proyecto h3 {
-    font-family: var(--fuente-titulos);
-    color: var(--texto-principal);
+    font-family: var(--fuente-titulo);
+    color: #fff;
     font-size: 1.3rem;
+}
+
+.tarjeta-proyecto p {
+    color: var(--color-texto-secundario);
+    font-size: 0.95rem;
 }
 
 .tags-tecnologias {
     display: flex;
-    gap: 0.5rem;
     flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .tag {
-    background-color: rgba(56, 189, 248, 0.12);
-    color: var(--color-brillante);
-    border: 1px solid var(--borde-seda);
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    color: var(--color-azul-hk);
+    font-size: 0.75rem;
     padding: 0.2rem 0.6rem;
     border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: 600;
+}
+
+.enlaces-proyecto {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
 }
 
 .enlaces-proyecto a {
-    color: var(--color-acento);
+    color: var(--color-azul-hk);
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    transition: var(--transicion-suave);
 }
 
 .enlaces-proyecto a:hover {
-    color: var(--color-brillante);
-    text-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
-    text-decoration: underline;
+    text-shadow: 0 0 8px var(--color-azul-hk);
 }
 
-/* ===================================================
-   CONTACTO
-   =================================================== */
-.tarjeta-contacto {
-    text-align: center;
+/* STREAMING_CHUNK:Estilizando la sección de contacto en dos columnas... */
+.contenedor-contacto-doble {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 2rem;
+}
+
+.columna-info h3,
+.columna-formulario h3 {
+    font-family: var(--fuente-titulo);
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.subtitulo-contacto {
+    color: var(--color-texto-secundario);
+    font-size: 0.9rem;
+    margin-bottom: 1.8rem;
+}
+
+.lista-contacto {
     display: flex;
     flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.item-contacto {
+    display: flex;
     align-items: center;
     gap: 1rem;
-}
-
-.correo a {
-    color: var(--color-brillante);
+    color: var(--color-texto);
     text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: text-shadow 0.3s ease;
+    transition: var(--transicion-suave);
+    padding: 0.6rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid transparent;
 }
 
-.correo a:hover {
-    text-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+.item-contacto:hover {
+    border-color: var(--color-borde);
+    background: rgba(0, 212, 255, 0.05);
+    color: var(--color-azul-hk);
 }
 
+.icono-contacto {
+    width: 24px;
+    height: 24px;
+    color: var(--color-azul-hk);
+    flex-shrink: 0;
+}
+
+.badge-estado {
+    text-align: center;
+    font-family: var(--fuente-titulo);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    padding: 0.8rem;
+    border: 1px dashed var(--color-borde-brillo);
+    border-radius: 8px;
+    color: var(--color-azul-hk);
+    background: rgba(0, 212, 255, 0.03);
+}
+
+/* Formulario */
+.formulario-hk {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.grupo-input label {
+    font-family: var(--fuente-titulo);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: var(--color-texto-secundario);
+}
+
+.grupo-input input,
+.grupo-input textarea {
+    background: rgba(9, 26, 42, 0.7);
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    color: #fff;
+    font-family: var(--fuente-cuerpo);
+    font-size: 0.95rem;
+    outline: none;
+    transition: var(--transicion-suave);
+}
+
+.grupo-input input:focus,
+.grupo-input textarea:focus {
+    border-color: var(--color-azul-hk);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.btn-enviar-hk {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    background: rgba(0, 212, 255, 0.15);
+    border: 1px solid var(--color-azul-hk);
+    color: var(--color-azul-hk);
+    padding: 0.9rem;
+    border-radius: 8px;
+    font-family: var(--fuente-titulo);
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transicion-suave);
+}
+
+.btn-enviar-hk:hover {
+    background: var(--color-azul-hk);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.icono-enviar {
+    width: 18px;
+    height: 18px;
+}
+
+/* STREAMING_CHUNK:Pie de página y consultas de medios responsive... */
 footer {
     text-align: center;
-    padding: 2rem;
-    color: var(--texto-secundario);
+    padding: 2rem 1rem;
+    color: var(--color-texto-secundario);
     font-size: 0.85rem;
-    border-top: 1px solid var(--borde-seda);
+    border-top: 1px solid var(--color-borde);
+    background: rgba(10, 14, 20, 0.9);
 }
 
-/* ===================================================
-   DISEÑO RESPONSIVO (MÓVIL)
-   =================================================== */
-@media (max-width: 768px) {
+/* Adaptación para pantallas pequeñas (Móviles / Tablets) */
+@media (max-width: 868px) {
     .menu-toggle {
         display: block;
     }
 
     .nav-menu {
-        display: none;
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: var(--bg-principal);
         flex-direction: column;
-        padding: 1.5rem;
-        border-bottom: 1px solid var(--borde-seda);
+        background: rgba(10, 14, 20, 0.95);
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid var(--color-borde);
+        padding: 1.5rem 0;
+        gap: 1.2rem;
+        align-items: center;
+        clip-path: circle(0% at 100% 0);
+        transition: clip-path 0.4s ease-in-out;
     }
 
     .nav-menu.activo {
-        display: flex;
+        clip-path: circle(150% at 100% 0);
     }
 
     .hero-contenido {
-        flex-direction: column-reverse;
+        grid-template-columns: 1fr;
         text-align: center;
+        gap: 2rem;
     }
 
     .hero-botones {
         justify-content: center;
     }
 
-    .hero h1 {
-        font-size: 2rem;
+    .grid-detalles {
+        grid-template-columns: 1fr;
     }
 
-    .hero-imagen {
-        width: 160px;
-        height: 160px;
+    .contenedor-contacto-doble {
+        grid-template-columns: 1fr;
     }
-}
-
-/* ===================================================
-   FONDO DE LLUVIA (CANVAS)
-   =================================================== */
-#bg-particulas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.6;
-}
-
-main, header, footer {
-    position: relative;
-    z-index: 1;
-}
-
-/* ===================================================
-   EFECTO FAROS ENCENDIDOS EN EL FONDO
-   =================================================== */
-.faro {
-    position: absolute;
-    top: 500px; /* Bajan la altura justa hacia las lámparas */
-    width: 14px;
-    height: 22px;
-    background: radial-gradient(circle, #7dd3fc 20%, #38bdf8 60%, transparent 100%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-    
-    box-shadow: 
-        0 0 15px #38bdf8,
-        0 0 35px rgba(56, 189, 248, 0.8),
-        0 0 75px rgba(56, 189, 248, 0.4);
-        
-    animation: titileo-faro 4s infinite ease-in-out alternate;
-}
-
-/* --- FAROS LADO IZQUIERDO --- */
-
-/* Faro alto delgado */
-.faro-izq-alto {
-    left: calc(50% - 378px);
-    top: 480px;
-}
-
-/* Lámpara doble izquierda (Lado izq y der del poste) */
-.faro-izq-1 {
-    left: calc(50% - 322px);
-    animation-delay: 0.8s;
-}
-
-.faro-izq-2 {
-    left: calc(50% - 250px);
-    animation-delay: 1.5s;
-}
-
-/* --- FAROS LADO DERECHO --- */
-
-/* Lámpara doble derecha (Lado izq y der del poste) */
-.faro-der-1 {
-    left: calc(50% + 250px);
-    animation-delay: 1s;
-}
-
-.faro-der-2 {
-    left: calc(50% + 322px);
-    animation-delay: 2s;
-}
-
-@keyframes titileo-faro {
-    0% { opacity: 0.65; transform: scale(0.9); }
-    50% { opacity: 1; transform: scale(1.15); }
-    100% { opacity: 0.8; transform: scale(1); }
 }
