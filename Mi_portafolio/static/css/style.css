@@ -1,5 +1,6 @@
 /* STREAMING_CHUNK:Definiendo variables globales y reseteo base... */
 :root {
+<<<<<<< HEAD
     --color-fondo: #0a0e14;
     --color-tarjeta: rgba(15, 23, 36, 0.75);
     --color-tarjeta-hover: rgba(22, 34, 52, 0.85);
@@ -10,6 +11,27 @@
     --color-texto: #e2e8f0;
     --color-texto-secundario: #94a3b8;
     --fuente-titulo: 'Cinzel', serif;
+=======
+    --bg-principal: #05070d;
+    --bg-tarjeta: rgba(12, 18, 32, 0.82);
+    --bg-tarjeta-hover: rgba(20, 30, 52, 0.92);
+
+    --color-primario: #2b598f;
+    /* Azul cobalto base */
+    --color-brillante: #38bdf8;
+    /* Cian reluciente de la lluvia */
+    --color-acento: #818cf8;
+    /* Azul índigo suave */
+
+    --texto-principal: #f1f5f9;
+    --texto-secundario: #94a3b8;
+
+    --borde-seda: rgba(56, 189, 248, 0.25);
+    --borde-brillante: rgba(56, 189, 248, 0.8);
+    --sombra-glow: 0 0 18px rgba(56, 189, 248, 0.4);
+
+    --fuente-titulos: 'Cinzel', serif;
+>>>>>>> 87076361d023e91eb9bcae508ddfca9aeeaf3695
     --fuente-cuerpo: 'Plus Jakarta Sans', sans-serif;
     --transicion-suave: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -25,6 +47,22 @@ html {
 }
 
 body {
+<<<<<<< HEAD
+=======
+    background-color: var(--bg-principal);
+
+    /* Superposición de capas oscuras para atenuar la imagen de fondo */
+    background-image:
+        linear-gradient(rgba(5, 7, 13, 0.84), rgba(5, 7, 13, 0.88)),
+        url('../images/fondo\ en\ negro.png');
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    color: var(--texto-principal);
+>>>>>>> 87076361d023e91eb9bcae508ddfca9aeeaf3695
     font-family: var(--fuente-cuerpo);
     background-color: var(--color-fondo);
     color: var(--color-texto);
@@ -686,8 +724,13 @@ footer {
         transition: clip-path 0.4s ease-in-out;
     }
 
+<<<<<<< HEAD
     .nav-menu.activo {
         clip-path: circle(150% at 100% 0);
+=======
+    .nav-menu.active {
+        display: flex;
+>>>>>>> 87076361d023e91eb9bcae508ddfca9aeeaf3695
     }
 
     .hero-contenido {
@@ -707,4 +750,143 @@ footer {
     .contenedor-contacto-doble {
         grid-template-columns: 1fr;
     }
+<<<<<<< HEAD
+=======
+}
+
+/* ===================================================
+   FONDO DE LLUVIA (CANVAS)
+   =================================================== */
+#bg-particulas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+}
+
+main,
+header,
+footer {
+    position: relative;
+    z-index: 1;
+}
+
+/* ===================================================
+   EFECTO FAROS ENCENDIDOS EN EL FONDO
+   =================================================== */
+.faro {
+    position: absolute;
+    top: 500px;
+    width: 14px;
+    height: 22px;
+    background: radial-gradient(circle, #7dd3fc 20%, #38bdf8 60%, transparent 100%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+
+    box-shadow:
+        0 0 15px #38bdf8,
+        0 0 35px rgba(56, 189, 248, 0.8),
+        0 0 75px rgba(56, 189, 248, 0.4);
+
+    animation: titileo-faro 4s infinite ease-in-out alternate;
+}
+
+/* --- FAROS LADO IZQUIERDO --- */
+
+.faro-izq-alto {
+    left: calc(50% - 378px);
+    top: 480px;
+}
+
+.faro-izq-1 {
+    left: calc(50% - 322px);
+    animation-delay: 0.8s;
+}
+
+.faro-izq-2 {
+    left: calc(50% - 250px);
+    animation-delay: 1.5s;
+}
+
+/* Contenedor fijos y sin scroll */
+/* ===================================================
+   CAPA DE FONDO Y FAROS ANIMADOS
+   =================================================== */
+.contenedor-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.imagen-fondo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4);
+}
+
+/* Estilo exacto con tus dimensiones originales */
+.faro {
+    position: absolute;
+    width: 25.5px;
+    height: 28px;
+    background: radial-gradient(ellipse at center, #7dd3fc 0%, #38bdf8 45%, transparent 75%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    
+    /* Duración de 8 segundos para una respiración mística y muy pausada */
+    animation: respiracion-faro 8s infinite ease-in-out;
+}
+
+/* Posiciones exactas y tiempos de desfase ampliados */
+.faro-izq-1 { 
+    top: 66.3%; 
+    left: 26.8%; 
+    animation-delay: 0s; 
+}
+
+.faro-izq-2 { 
+    top: 66.3%; 
+    left: 34.7%; 
+    animation-delay: 2s; 
+}
+
+.faro-der-1 { 
+    top: 67.8%; 
+    left: 72.8%; 
+    animation-delay: 4s; 
+}
+
+.faro-der-2 { 
+    top: 67.8%; 
+    left: 81.1%; 
+    animation-delay: 6s; 
+}
+
+@keyframes respiracion-faro {
+    0%, 100% {
+        opacity: 0.55;
+        box-shadow: 
+            0 0 8px #38bdf8,
+            0 0 18px rgba(56, 189, 248, 0.5),
+            0 0 35px rgba(56, 189, 248, 0.25);
+    }
+    50% {
+        opacity: 0.95;
+        box-shadow: 
+            0 0 16px #7dd3fc,
+            0 0 32px rgba(56, 189, 248, 0.85),
+            0 0 65px rgba(56, 189, 248, 0.5);
+    }
+>>>>>>> 87076361d023e91eb9bcae508ddfca9aeeaf3695
 }
