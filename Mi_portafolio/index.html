@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,24 +8,27 @@
     <!-- Fuentes de Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Plus+Jakarta+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="static/css/style.css">
 </head>
+
 <body>
 
-<div class="contenedor-fondo">
-  <img src="images/fondo en negro.png" class="imagen-fondo" alt="Fondo City of Tears" />
-  
-  <!-- Faros ajustados dinámicamente -->
-  <div class="faro faro-izq-1"></div>
-  <div class="faro faro-izq-2"></div>
-  <div class="faro faro-der-1"></div>
-  <div class="faro faro-der-2"></div>
-</div>
+    <div class="contenedor-fondo">
+        <img src="static/images/fondo en negro.png" class="imagen-fondo" alt="Fondo City of Tears" />
+
+        <!-- Faros ajustados dinámicamente -->
+        <div class="faro faro-izq-1"></div>
+        <div class="faro faro-izq-2"></div>
+        <div class="faro faro-der-1"></div>
+        <div class="faro faro-der-2"></div>
+    </div>
 
     <!-- Canvas del fondo para la lluvia -->
     <canvas id="bg-particulas"></canvas>
-    
+
     <!-- HEADER Y NAVEGACIÓN -->
     <header class="header">
         <div class="logo">
@@ -34,6 +38,7 @@
         <button class="menu-toggle" id="menuToggle">☰</button>
         <nav class="nav-menu" id="navMenu">
             <a href="#inicio">Inicio</a>
+            <a href="#sobre-mi">Sobre Mí</a>
             <a href="#habilidades">Habilidades</a>
             <a href="#proyectos">Proyectos</a>
             <a href="#contacto">Contacto</a>
@@ -49,7 +54,8 @@
                         <span class="subtitulo-seda">DESARROLLADOR WEB</span>
                         <h1>Axel Escobar</h1>
                         <p class="perfil">
-                            Bienvenido a mi espacio. Apasionado por crear experiencias digitales atractivas, animaciones fluidas y diseño web con personalidad propia.
+                            Bienvenido a mi espacio. Apasionado por crear experiencias digitales atractivas, animaciones
+                            fluidas y diseño web con personalidad propia.
                         </p>
                         <div class="hero-botones">
                             <a href="#proyectos" class="btn btn-primario">Ver Proyectos</a>
@@ -63,66 +69,261 @@
             </div>
         </section>
 
-        <!-- SECCIÓN HABILIDADES -->
-        <section id="habilidades" class="seccion">
-            <h2>HABILIDADES</h2>
-            <p class="instruccion-habilidades">Selecciona una habilidad arriba para ver más detalles.</p>
-            
-            <div class="grid-habilidades">
-                <div class="tarjeta-habilidad" data-info="<strong>HTML5:</strong> Estructuración semántica, accesible y optimizada para la web.">HTML5</div>
-                <div class="tarjeta-habilidad" data-info="<strong>CSS3:</strong> Diseños responsivos, Canvas, animaciones y diseño personalizado.">CSS3</div>
-                <div class="tarjeta-habilidad" data-info="<strong>JavaScript:</strong> Lógica dinámica, interacción con el DOM, Canvas 2D y manipulación de eventos.">JavaScript</div>
-                <div class="tarjeta-habilidad" data-info="<strong>Git:</strong> Control de versiones y flujo de trabajo colaborativo.">Git</div>
-                <div class="tarjeta-habilidad" data-info="<strong>GitHub:</strong> Alojamiento de repositorios, despliegue y gestión de código.">GitHub</div>
-            </div>
+        <!-- SECCIÓN SOBRE MÍ -->
+        <section id="sobre-mi" class="seccion">
+            <h2>SOBRE MÍ</h2>
+            <div class="tarjeta tarjeta-sobre-mi">
+                <p>¡Hola! Soy <strong>Axel Escobar</strong>, un desarrollador web fascinado por convertir ideas en
+                    experiencias digitales interactivas, fluidas y con un apartado visual bien cuidado.</p>
 
-            <div class="panel-info-habilidad" id="infoHabilidad">
-                <p>Haz clic en cualquier tecnología para explorar mi nivel de experiencia.</p>
-            </div>
-        </section>
+                <p>Me enfoco en el desarrollo Frontend creando interfaces limpias con <strong>HTML, CSS y
+                        JavaScript</strong>, prestando especial atención a los detalles, las animaciones y la lógica
+                    detrás de cada interacción. Me apasiona aprender nuevas tecnologías y enfrentarme a retos donde el
+                    diseño y el código se fusionan (aunque la mayoria de veces soy muy flojo).</p>
 
-        <!-- SECCIÓN PROYECTOS -->
-        <section id="proyectos" class="seccion">
-            <h2>PROYECTOS</h2>
-            <div class="grid-proyectos">
-                <div class="tarjeta tarjeta-proyecto">
-                    <div class="contenedor-video">
-                        <video controls poster="static/img/preview-proyecto.png">
-                            <source src="static/video/demo-proyecto.mp4" type="video/mp4">
-                            Tu navegador no soporta el reproductor de video.
-                        </video>
+                <p>Cuando no estoy escribiendo código, me encuentras explorando mundos en videojuegos (fan de la
+                    estética de <span class="texto-azul">Hollow Knight</span>), aprendiendo sobre nuevas herramientas
+                    web o trabajando en proyectos personales para seguir puliendo mis habilidades.</p>
+
+                <hr class="linea-divisora">
+
+                <div class="grid-detalles">
+                    <div class="caja-detalle">
+                        <span class="etiqueta-det">UBICACIÓN</span>
+                        <span class="valor-det">Chile 🇨🇱</span>
                     </div>
-                    <h3>Proyecto Destacado</h3>
-                    <p>Una breve descripción del proyecto donde se destacan las funcionalidades principales implementadas.</p>
-                    <div class="tags-tecnologias">
-                        <span class="tag">HTML5</span>
-                        <span class="tag">CSS3</span>
-                        <span class="tag">JavaScript</span>
+                    <div class="caja-detalle">
+                        <span class="etiqueta-det">ENFOQUE</span>
+                        <span class="valor-det">Frontend & Web UI</span>
                     </div>
-                    <div class="enlaces-proyecto">
-                        <a href="#" target="_blank">Ver Demo →</a>
-                        <a href="#" target="_blank">Código Fuente →</a>
+                    <div class="caja-detalle">
+                        <span class="etiqueta-det">ESTADO</span>
+                        <span class="valor-det texto-destacado">Disponible para proyectos</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN CONTACTO -->
+        <!-- SECCIÓN TECNOLOGÍAS / HABILIDADES -->
+        <section id="habilidades" class="seccion">
+            <h2>TECNOLOGÍAS</h2>
+            <p class="instruccion-habilidades">Herramientas dominadas en la malla de estudio</p>
+
+            <div class="grid-habilidades">
+                <div class="tarjeta-habilidad">
+                    <div class="icono-tech">📄</div>
+                    <h3>HTML5</h3>
+                    <span class="badge-tech">Completado</span>
+                    <p>Estructura, formularios y tablas.</p>
+                </div>
+
+                <div class="tarjeta-habilidad">
+                    <div class="icono-tech">🎨</div>
+                    <h3>CSS3</h3>
+                    <span class="badge-tech">Completado</span>
+                    <p>Flexbox, Box Model y animaciones.</p>
+                </div>
+
+                <div class="tarjeta-habilidad">
+                    <div class="icono-tech">📜</div>
+                    <h3>JavaScript</h3>
+                    <span class="badge-tech badge-práctica">Práctica</span>
+                    <p>DOM, eventos y algoritmos.</p>
+                </div>
+
+                <div class="tarjeta-habilidad">
+                    <div class="icono-tech">🅰️</div>
+                    <h3>Bootstrap</h3>
+                    <span class="badge-tech badge-intermedio">Intermedio</span>
+                    <p>Componentes y diseño fluido.</p>
+                </div>
+
+                <div class="tarjeta-habilidad">
+                    <div class="icono-tech">💻</div>
+                    <h3>VS Code</h3>
+                    <span class="badge-tech">Dominado</span>
+                    <p>Editor e integración.</p>
+                </div>
+
+                <div class="tarjeta-habilidad">
+                    <div class="icono-tech">🐙</div>
+                    <h3>Git / Pages</h3>
+                    <span class="badge-tech badge-práctica">Práctica</span>
+                    <p>Publicación en GitHub Pages.</p>
+                </div>
+            </div>
+        </section>
+
+       <!-- SECCIÓN PROYECTOS CORE -->
+        <section id="proyectos" class="seccion">
+            <h2>PROYECTOS CORE</h2>
+
+            <!-- Grid de Proyectos -->
+            <div class="grid-proyectos">
+                <!-- Tarjeta 1 -->
+                <div class="tarjeta tarjeta-proyecto">
+                    <div class="imagen-proyecto">
+                        <img src="static/images/proyecto1.png" alt="Formulario de Registro">
+                    </div>
+                    <div class="contenido-proyecto">
+                        <span class="badge-categoria">HTML Basics Core</span>
+                        <h3>Formulario de Registro</h3>
+                        <p>Diseño de formulario con validaciones básicas, inputs variados, selectores y etiquetas semánticas.</p>
+                        <div class="acciones-proyecto">
+                            <button class="btn-detalles">Detalles</button>
+                            <a href="https://github.com/axelescobar-art" target="_blank" rel="noopener" class="btn-github" aria-label="GitHub">
+                                🐙
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="tarjeta tarjeta-proyecto">
+                    <div class="imagen-proyecto">
+                        <img src="static/images/proyecto2.png" alt="Tarjeta de Perfil">
+                    </div>
+                    <div class="contenido-proyecto">
+                        <span class="badge-categoria">Posiciones Core</span>
+                        <h3>Tarjeta de Usuario & Perfil</h3>
+                        <p>Maquetación de perfil con posiciones CSS (`relative`, `absolute`) y diseño modular.</p>
+                        <div class="acciones-proyecto">
+                            <button class="btn-detalles">Detalles</button>
+                            <a href="https://github.com/axelescobar-art" target="_blank" rel="noopener" class="btn-github" aria-label="GitHub">
+                                🐙
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="tarjeta tarjeta-proyecto">
+                    <div class="imagen-proyecto">
+                        <img src="static/images/proyecto3.png" alt="Proyecto Me Gusta">
+                    </div>
+                    <div class="contenido-proyecto">
+                        <span class="badge-categoria">DOM JS Core</span>
+                        <h3>Proyecto Me Gusta (Likes)</h3>
+                        <p>Interacción dinámica con el DOM para contadores numéricos mediante `querySelector` y `onclick`.</p>
+                        <div class="acciones-proyecto">
+                            <button class="btn-detalles">Detalles</button>
+                            <a href="https://github.com/axelescobar-art" target="_blank" rel="noopener" class="btn-github" aria-label="GitHub">
+                                🐙
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demostración en Video -->
+            <div class="seccion-video">
+                <h2>VIDEO DE DEMOSTRACIÓN</h2>
+
+                <div class="tarjeta contenedor-video">
+                    <video controls poster="static/images/preview-proyecto.png">
+                        <source src="static/video/demo-proyecto.mp4" type="video/mp4">
+                        Tu navegador no soporta el reproductor de video.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN CONTACTO (ESTILO CIUDAD DE LAS LÁGRIMAS) -->
         <section id="contacto" class="seccion">
             <h2>CONTACTO</h2>
-            <div class="tarjeta tarjeta-contacto">
-                <p>¿Tienes una propuesta o quieres colaborar en un proyecto?</p>
-                <div class="correo">
-                    <a href="mailto:tu-email@ejemplo.com">tu-email@ejemplo.com</a>
+
+            <div class="contenedor-contacto-doble">
+
+                <!-- COLUMNA IZQUIERDA: INFORMACIÓN Y REDES -->
+                <div class="tarjeta columna-info">
+                    <h3>Información</h3>
+                    <p class="subtitulo-contacto">Conecta conmigo o envíame un mensaje directo.</p>
+
+                    <div class="lista-contacto">
+                        <!-- Email -->
+                        <a href="mailto:axelescobar802@gmail.com" class="item-contacto">
+                            <div class="icono-contacto">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                                </svg>
+                            </div>
+                            <span>axelescobar802@gmail.com</span>
+                        </a>
+
+                        <!-- GitHub -->
+                        <a href="https://github.com/axelescobar-art" target="_blank" class="item-contacto">
+                            <div class="icono-contacto">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+                                </svg>
+                            </div>
+                            <span>axelescobar-art</span>
+                        </a>
+
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/in/axel-escobar-29807a439/" target="_blank"
+                            class="item-contacto">
+                            <div class="icono-contacto">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.6a1.49 1.49 0 0 0-1.5 1.5 1.49 1.49 0 0 0 1.5 1.49c.82 0 1.5-.67 1.5-1.49a1.49 1.49 0 0 0-1.5-1.5z" />
+                                </svg>
+                            </div>
+                            <span>axel-escobar</span>
+                        </a>
+                    </div>
+
+                    <!-- Insignia / Tag de estado -->
+                    <div class="badge-estado">
+                        ✦ Desarrollador Web Disponible ✦
+                    </div>
                 </div>
+
+                <!-- COLUMNA DERECHA: FORMULARIO DE CONTACTO -->
+                <div class="tarjeta columna-formulario">
+                    <h3>FORMULARIO DE CONTACTO</h3>
+
+                    <form action="https://formsubmit.co/axelescobar802@gmail.com" method="POST" class="formulario-hk">
+
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_subject" value="¡Nuevo mensaje desde tu Portafolio!">
+
+                        <div class="grupo-input">
+                            <label for="nombre">Nombre Completo</label>
+                            <input type="text" id="nombre" name="Nombre" placeholder="Tu nombre..." required>
+                        </div>
+
+                        <div class="grupo-input">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" name="Correo" placeholder="correo@ejemplo.com" required>
+                        </div>
+
+                        <div class="grupo-input">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="Mensaje" rows="4" placeholder="Escribe tu mensaje aquí..."
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-enviar-hk">
+                            <span>Enviar Mensaje</span>
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="icono-enviar">
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+
             </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2026 Tu Nombre — Inspirado en la Ciudad de las Lágrimas</p>
+        <p>© 2026 Axel Escobar — Inspirado en la Ciudad de las Lágrimas</p>
     </footer>
 
     <script src="static/js/script.js"></script>
 </body>
+
 </html>

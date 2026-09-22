@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- LLUVIA Y SALPICONES (CIUDAD DE LAS LÁGRIMAS) ---
+    // --- LLUVIA Y SALPICONES (CIUDAD DE LAS LÁGRIMAS - FIDELIDAD AL LORE) ---
     const canvas = document.getElementById('bg-particulas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
@@ -43,18 +43,19 @@ document.addEventListener('DOMContentLoaded', () => {
             height = canvas.height = window.innerHeight;
         });
 
-        const cantidadGotas = 80;
+        const cantidadGotas = 100;
         const gotas = [];
-        const ondas = [];
+        let ondas = [];
 
+        // Inicialización de gotas (filtración directa del Lago Azul: rápidas y 100% verticales)
         for (let i = 0; i < cantidadGotas; i++) {
             gotas.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
-                largo: Math.random() * 20 + 15,
-                velocidadY: Math.random() * 10 + 8,
-                velocidadX: -1.5,
-                opacidad: Math.random() * 0.5 + 0.2,
+                largo: Math.random() * 20 + 25,       // Gotas finas y esbeltas
+                velocidadY: Math.random() * 14 + 20,  // Caída rápida por gravedad constante (20 - 34 px/f)
+                velocidadX: 0,                         // 0 = Caída completamente vertical sin viento
+                opacidad: Math.random() * 0.45 + 0.25,
                 color: Math.random() > 0.3 ? 'rgba(56, 189, 248, ' : 'rgba(129, 140, 248, '
             });
         }
@@ -62,45 +63,45 @@ document.addEventListener('DOMContentLoaded', () => {
         function animarCiudadDeLasLagrimas() {
             ctx.clearRect(0, 0, width, height);
 
+            // Dibujar lluvia recta hacia abajo
             gotas.forEach(g => {
                 g.y += g.velocidadY;
-                g.x += g.velocidadX;
 
                 ctx.beginPath();
                 ctx.moveTo(g.x, g.y);
-                ctx.lineTo(g.x + g.velocidadX, g.y + g.largo);
+                ctx.lineTo(g.x, g.y + g.largo); // Trazo vertical perfecto
                 ctx.strokeStyle = g.color + g.opacidad + ')';
                 ctx.lineWidth = 1.2;
                 ctx.stroke();
 
+                // Generar impacto al colisionar con el suelo
                 if (g.y > height) {
                     ondas.push({
                         x: g.x,
-                        y: height - 5,
+                        y: height - 4,
                         radio: 1,
-                        maxRadio: Math.random() * 8 + 4,
-                        opacidad: 0.6,
+                        maxRadio: Math.random() * 6 + 4,
+                        opacidad: 0.5,
                         color: g.color
                     });
 
                     g.y = -g.largo;
-                    g.x = Math.random() * (width + 200);
+                    g.x = Math.random() * width;
                 }
             });
 
-            ondas.forEach((o, index) => {
+            // Dibujar salpicones/ondas en el suelo optimizando rendimiento
+            ondas = ondas.filter(o => {
                 ctx.beginPath();
                 ctx.arc(o.x, o.y, o.radio, 0, Math.PI * 2);
                 ctx.strokeStyle = o.color + o.opacidad + ')';
                 ctx.lineWidth = 0.8;
                 ctx.stroke();
 
-                o.radio += 0.4;
-                o.opacidad -= 0.03;
+                o.radio += 0.5;
+                o.opacidad -= 0.04;
 
-                if (o.opacidad <= 0 || o.radio >= o.maxRadio) {
-                    ondas.splice(index, 1);
-                }
+                return o.opacidad > 0 && o.radio < o.maxRadio;
             });
 
             requestAnimationFrame(animarCiudadDeLasLagrimas);
