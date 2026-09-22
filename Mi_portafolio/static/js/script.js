@@ -1,48 +1,50 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. MENÚ RESPONSIVE (TOGGLE EN MÓVILES)
+    /* ===================================================
+       1. MENÚ RESPONSIVE (TOGGLE EN MÓVILES)
+       =================================================== */
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
 
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
+            navMenu.classList.toggle('activo');
         });
 
-        // Cierra el menú al hacer clic en cualquier enlace
         document.querySelectorAll('.nav-menu a').forEach(enlace => {
             enlace.addEventListener('click', () => {
                 navMenu.classList.remove('active');
+                navMenu.classList.remove('activo');
             });
         });
     }
 
-    // 2. PANEL INTERACTIVO DE HABILIDADES
+    /* ===================================================
+       2. PANEL INTERACTIVO DE HABILIDADES
+       =================================================== */
     const tarjetasHabilidades = document.querySelectorAll('.tarjeta-habilidad');
     const panelInfo = document.getElementById('infoHabilidad');
 
-    tarjetasHabilidades.forEach(tarjeta => {
-        tarjeta.addEventListener('click', () => {
-            // Remover clase activa de todas las demás tarjetas
-            tarjetasHabilidades.forEach(t => t.classList.remove('activa'));
-            
-            // Activar la tarjeta seleccionada
-            tarjeta.classList.add('activa');
+    if (tarjetasHabilidades.length > 0) {
+        tarjetasHabilidades.forEach(tarjeta => {
+            tarjeta.addEventListener('click', () => {
+                tarjetasHabilidades.forEach(t => t.classList.remove('activa'));
+                tarjeta.classList.add('activa');
 
-            // Obtener información del atributo data-info y colocarla en el panel
-            const info = tarjeta.getAttribute('data-info');
-            if (panelInfo && info) {
-                panelInfo.innerHTML = `<p>${info}</p>`;
-            }
+                const info = tarjeta.getAttribute('data-info');
+                if (panelInfo && info) {
+                    panelInfo.innerHTML = `<p>${info}</p>`;
+                }
+            });
         });
-    });
+    }
 
-<<<<<<< HEAD
-    // --- LLUVIA Y SALPICONES (CIUDAD DE LAS LÁGRIMAS - FIDELIDAD AL LORE) ---
-=======
-    // 3. EFECTO DE LLUVIA / PARTÍCULAS (CIUDAD DE LAS LÁGRIMAS)
->>>>>>> e098b316eb2ac96cd234b2570b57ac5e03f4d33d
+    /* ===================================================
+       3. LLUVIA TORRENCIAL Y SALPICONES (ESTILO CIUDAD DE LAS LÁGRIMAS)
+       =================================================== */
     const canvas = document.getElementById('bg-particulas');
+    
     if (canvas) {
         const ctx = canvas.getContext('2d');
 
@@ -54,76 +56,99 @@ document.addEventListener('DOMContentLoaded', () => {
         ajustarTamanoCanvas();
         window.addEventListener('resize', ajustarTamanoCanvas);
 
-<<<<<<< HEAD
-        const cantidadGotas = 100;
+        // --- CONFIGURACIÓN DE LA LLUVIA ---
+        const cantidadGotas = 130; // Un poco más densa para efecto de tormenta
         const gotas = [];
         let ondas = [];
-=======
-        // Crear gotas de lluvia
-        const cantidadGotas = 80;
-        const gotas = [];
->>>>>>> e098b316eb2ac96cd234b2570b57ac5e03f4d33d
 
-        // Inicialización de gotas (filtración directa del Lago Azul: rápidas y 100% verticales)
+        // Inclinación suave del viento (-1.5 px x cuadro para caída realista)
+        const vientoX = -1.5; 
+
         for (let i = 0; i < cantidadGotas; i++) {
+            // Generamos gotas con diferentes velocidades para crear profundidad (efecto 3D)
+            const profundidad = Math.random(); 
+
             gotas.push({
-<<<<<<< HEAD
-                x: Math.random() * width,
-                y: Math.random() * height,
-                largo: Math.random() * 20 + 25,       // Gotas finas y esbeltas
-                velocidadY: Math.random() * 14 + 20,  // Caída rápida por gravedad constante (20 - 34 px/f)
-                velocidadX: 0,                         // 0 = Caída completamente vertical sin viento
-                opacidad: Math.random() * 0.45 + 0.25,
-                color: Math.random() > 0.3 ? 'rgba(56, 189, 248, ' : 'rgba(129, 140, 248, '
+                x: Math.random() * (canvas.width + 200), // Margen extra a la derecha para compensar inclinación
+                y: Math.random() * canvas.height,
+                largo: profundidad * 25 + 25,            // Trazo más largo por la alta velocidad (25px a 50px)
+                velocidadY: profundidad * 25 + 35,       // CAÍDA RÁPIDA REALISTA: 35px a 60px por fotograma
+                velocidadX: vientoX,
+                grosor: profundidad * 1.2 + 0.6,         // Gotas más cercanas son más gruesas
+                opacidad: profundidad * 0.4 + 0.15,
+                color: Math.random() > 0.25 ? 'rgba(56, 189, 248, ' : 'rgba(129, 140, 248, '
             });
         }
 
-        function animarCiudadDeLasLagrimas() {
-            ctx.clearRect(0, 0, width, height);
+        // --- CONFIGURACIÓN DE PARTÍCULAS / ESPORAS DE LUZ ---
+        const cantidadParticulas = Math.floor((canvas.width * canvas.height) / 30000);
+        const particulas = [];
 
-            // Dibujar lluvia recta hacia abajo
-            gotas.forEach(g => {
-                g.y += g.velocidadY;
-=======
+        for (let i = 0; i < cantidadParticulas; i++) {
+            particulas.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                longitud: Math.random() * 18 + 10,
-                velocidad: Math.random() * 4 + 4,
-                opacidad: Math.random() * 0.4 + 0.1
+                size: Math.random() * 2 + 0.5,
+                speedX: Math.random() * 0.4 - 0.2,
+                speedY: Math.random() * -0.4 - 0.1,
+                opacity: Math.random() * 0.4 + 0.2
             });
         }
 
-        // Bucle de animación
-        function animarLluvia() {
+        // --- BUCLE DE ANIMACIÓN ---
+        function animarAmbiente() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
->>>>>>> e098b316eb2ac96cd234b2570b57ac5e03f4d33d
 
-            gotas.forEach(gota => {
+            // 1. Dibujar Partículas de Luz Flotantes (Fondo)
+            particulas.forEach(p => {
+                p.x += p.speedX;
+                p.y += p.speedY;
+
+                if (p.y < 0) {
+                    p.y = canvas.height;
+                    p.x = Math.random() * canvas.width;
+                }
+
+                ctx.fillStyle = `rgba(56, 189, 248, ${p.opacity})`;
                 ctx.beginPath();
-<<<<<<< HEAD
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // 2. Dibujar Gotas de Lluvia de Alta Velocidad
+            gotas.forEach(g => {
+                g.y += g.velocidadY;
+                g.x += g.velocidadX;
+
+                ctx.beginPath();
                 ctx.moveTo(g.x, g.y);
-                ctx.lineTo(g.x, g.y + g.largo); // Trazo vertical perfecto
+                // Dibujamos la traza inclinada proporcional a su velocidad
+                ctx.lineTo(g.x + g.velocidadX, g.y + g.largo); 
                 ctx.strokeStyle = g.color + g.opacidad + ')';
-                ctx.lineWidth = 1.2;
+                ctx.lineWidth = g.grosor;
                 ctx.stroke();
 
-                // Generar impacto al colisionar con el suelo
-                if (g.y > height) {
-                    ondas.push({
-                        x: g.x,
-                        y: height - 4,
-                        radio: 1,
-                        maxRadio: Math.random() * 6 + 4,
-                        opacidad: 0.5,
-                        color: g.color
-                    });
+                // Impacto en el suelo
+                if (g.y > canvas.height) {
+                    // Generar onda/salpicón sólo si la gota está en el plano frontal
+                    if (g.grosor > 1.0) {
+                        ondas.push({
+                            x: g.x,
+                            y: canvas.height - 3,
+                            radio: 1,
+                            maxRadio: Math.random() * 7 + 4,
+                            opacidad: 0.6,
+                            color: g.color
+                        });
+                    }
 
+                    // Reiniciar la gota arriba
                     g.y = -g.largo;
-                    g.x = Math.random() * width;
+                    g.x = Math.random() * (canvas.width + 200);
                 }
             });
 
-            // Dibujar salpicones/ondas en el suelo optimizando rendimiento
+            // 3. Dibujar Salpicones u Ondas de Impacto
             ondas = ondas.filter(o => {
                 ctx.beginPath();
                 ctx.arc(o.x, o.y, o.radio, 0, Math.PI * 2);
@@ -131,34 +156,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.lineWidth = 0.8;
                 ctx.stroke();
 
-                o.radio += 0.5;
-                o.opacidad -= 0.04;
+                o.radio += 0.8; // Expansión rápida del salpicón
+                o.opacidad -= 0.05;
 
                 return o.opacidad > 0 && o.radio < o.maxRadio;
             });
 
-            requestAnimationFrame(animarCiudadDeLasLagrimas);
-=======
-                ctx.moveTo(gota.x, gota.y);
-                ctx.lineTo(gota.x - 1, gota.y + gota.longitud); // Ligera inclinación en la caída
-                ctx.strokeStyle = `rgba(56, 189, 248, ${gota.opacidad})`;
-                ctx.lineWidth = 1;
-                ctx.stroke();
-
-                // Actualizar posición Y
-                gota.y += gota.velocidad;
-
-                // Reiniciar gota al salir de la pantalla
-                if (gota.y > canvas.height) {
-                    gota.y = -gota.longitud;
-                    gota.x = Math.random() * canvas.width;
-                }
-            });
-
-            requestAnimationFrame(animarLluvia);
->>>>>>> e098b316eb2ac96cd234b2570b57ac5e03f4d33d
+            requestAnimationFrame(animarAmbiente);
         }
 
-        animarLluvia();
+        animarAmbiente();
+    }
+
+    /* ===================================================
+       4. MANEJO DEL FORMULARIO DE CONTACTO
+       =================================================== */
+    const formulario = document.querySelector('.formulario-hk');
+
+    if (formulario) {
+        formulario.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Gracias por tu mensaje! Axel te responderá pronto.');
+            formulario.reset();
+        });
     }
 });
