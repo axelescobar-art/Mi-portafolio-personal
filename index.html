@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Axel Escobar">
+    <title>Axel Escobar | Portafolio</title>
+
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+
+    <!-- Fondo dinámico y efectos (sin la imagen estática) -->
+    <div class="contenedor-fondo">
+        <div class="faro faro-izq-1"></div>
+        <div class="faro faro-izq-2"></div>
+        <div class="faro faro-der-1"></div>
+        <div class="faro faro-der-2"></div>
+    </div>
+    <canvas id="bg-particulas"></canvas>
+
+    <!-- HEADER Y NAVEGACIÓN -->
+    <header class="header">
+        <div class="logo">
+            <svg class="logo-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+            <span>PORTAFOLIO</span>
+        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+        <nav class="nav-menu" id="navMenu">
+            <a href="#inicio">INICIO</a>
+            <a href="#sobre-mi">SOBRE MÍ</a>
+            <a href="#habilidades">HABILIDADES</a>
+            <a href="#proyectos">PROYECTOS</a>
+            <a href="#contacto">CONTACTO</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- SECCIÓN HERO -->
+        <section id="inicio" class="seccion">
+            <div class="tarjeta hero">
+                <div class="hero-contenido">
+                    <div class="hero-texto">
+                        <span class="subtitulo-seda">DESARROLLADOR WEB</span>
+                        <h1>AXEL ESCOBAR</h1>
+                        <p class="perfil">
+                            Bienvenido a mi espacio. Apasionado por crear experiencias digitales atractivas, animaciones
+                            fluidas y diseño web con personalidad propia.
+                        </p>
+                        <div class="hero-botones">
+                            <a href="#proyectos" class="btn btn-primario">VER PROYECTOS</a>
+                            <a href="#contacto" class="btn btn-secundario">CONTACTAR</a>
+                        </div>
+                    </div>
+                    <div class="hero-imagen">
+                        <img src="static/images/hornetchiquita.png" alt="Axel Escobar Avatar">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN SOBRE MÍ -->
+        <section id="sobre-mi" class="seccion">
+            <h2>SOBRE MÍ</h2>
+            <div class="tarjeta tarjeta-sobre-mi">
+                <p>¡Hola! Soy <strong>Axel Escobar</strong>, un desarrollador web fascinado por convertir ideas en
+                    experiencias digitales interactivas, fluidas y con un apartado visual bien cuidado.</p>
+                <p>Me enfoco en el desarrollo Frontend creando interfaces limpias con <strong class="texto-azul">HTML,
+                        CSS y JavaScript</strong>, prestando especial atención a los detalles, las animaciones y la
+                    lógica detrás de cada interacción.</p>
+                <p>Cuando no estoy escribiendo código, me encuentras explorando mundos en videojuegos (fan de la
+                    estética de <strong class="texto-azul">Hollow Knight</strong>), aprendiendo sobre nuevas
+                    herramientas web o trabajando en proyectos personales.</p>
+
+                <hr class="linea-divisora">
+
+                <div class="grid-detalles">
+                    <div class="caja-detalle">
+                        <span class="etiqueta-det">ENFOQUE</span>
+                        <span class="valor-det texto-destacado">Frontend Dev</span>
+                    </div>
+                    <div class="caja-detalle">
+                        <span class="etiqueta-det">UBICACIÓN</span>
+                        <span class="valor-det">Chile 🇨🇱</span>
+                    </div>
+                    <div class="caja-detalle">
+                        <span class="etiqueta-det">ESTADO</span>
+                        <span class="valor-det texto-destacado">Disponible</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN HABILIDADES / TECNOLOGÍAS -->
+        <section id="habilidades" class="seccion">
+            <h2>HABILIDADES Y TECNOLOGÍAS</h2>
+            <p class="instruccion-habilidades">Herramientas dominadas y tecnologías en aprendizaje:</p>
+
+            <div class="grid-habilidades">
+                <div class="tarjeta-habilidad">
+                    <div class="icono-tech">📄</div>
+                    <h3>HTML5</h3>
+                    <span class="badge-tech">Completado</span>
+                    <p>Estructuración semántica, accesibilidad web y maquetación limpia.</p>
+                </div>
+
+                <div class="tarjeta-habilidad">
+                    <div class="icono-tech">🎨</div>
+                    <h3>CSS3</h3>
+                    <span class="badge-tech">Completado</span>
+                    <p>Diseño responsive, Flexbox, CSS Grid y animaciones visuales.</p>
+                </div>
+
+                <div class="tarjeta-habilidad">
+                    <div class="icono-tech">📜</div>
+                    <h3>JavaScript</h3>
+                    <span class="badge-tech badge-práctica">En Práctica</span>
+                    <p>Manipulación del DOM, eventos, lógica ES6+ y asincronía.</p>
+                </div>
+
+                <div class="tarjeta-habilidad">
+                    <div class="icono-tech">🅰️</div>
+                    <h3>Bootstrap</h3>
+                    <span class="badge-tech badge-intermedio">Intermedio</span>
+                    <p>Componentes UI rápidos y diseño adaptable.</p>
+                </div>
+
+                <div class="tarjeta-habilidad">
+                    <div class="icono-tech">💻</div>
+                    <h3>VS Code</h3>
+                    <span class="badge-tech">Dominado</span>
+                    <p>Entorno de desarrollo e integración de herramientas.</p>
+                </div>
+
+                <div class="tarjeta-habilidad">
+                    <div class="icono-tech">🐙</div>
+                    <h3>Git / GitHub</h3>
+                    <span class="badge-tech badge-práctica">En Práctica</span>
+                    <p>Control de versiones y despliegue en GitHub Pages.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN PROYECTOS -->
+        <section id="proyectos" class="seccion">
+            <h2>PROYECTOS</h2>
+
+            <div class="grid-proyectos">
+                <!-- Proyecto 1 -->
+                <div class="tarjeta tarjeta-proyecto">
+                    <div class="imagen-proyecto">
+                        <img src="static/images/comida-palacio.png" alt="Formulario de Registro">
+                    </div>
+                    <div class="contenido-proyecto">
+                        <span class="subtitulo-seda">HTML & CSS</span>
+                        <h3>Taco palace</h3>
+                        <p>Página web para un restaurante mexicano. Diseñada con HTML5 y CSS3 enfocándose
+                            en una presentación visual atractiva y organizada del menú.</p>
+                        <div class="tags-tecnologias">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">CSS3</span>
+                        </div>
+                        <div class="enlaces-proyecto">
+                            <a href="https://github.com/axelescobar-art/Skillnest_fundamentos_web-1/tree/main/STACK_JS/19_taco_palace"
+                                target="_blank" rel="noopener">Código Fuente
+                                →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2 -->
+                <div class="tarjeta tarjeta-proyecto">
+                    <div class="imagen-proyecto">
+                        <img src="static/images/skillnest.png" alt="Tarjeta de Perfil">
+                    </div>
+                    <div class="contenido-proyecto">
+                        <span class="subtitulo-seda">POSICIONES CSS</span>
+                        <h3>Diseño de pagina web</h3>
+                        <p>Interfaz modular para una plataforma educativa. Desarrollada aplicando técnicas de
+                            posicionamiento CSS y estructura responsive.</p>
+                        <div class="tags-tecnologias">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">CSS3</span>
+                        </div>
+                        <div class="enlaces-proyecto">
+                            <a href="https://github.com/axelescobar-art" target="_blank" rel="noopener">Código Fuente
+                                →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3 -->
+                <div class="tarjeta tarjeta-proyecto">
+                    <div class="imagen-proyecto">
+                        <img src="static/images/like.png" alt="Proyecto Me Gusta">
+                    </div>
+                    <div class="contenido-proyecto">
+                        <span class="subtitulo-seda">JAVASCRIPT & DOM</span>
+                        <h3>Proyecto Me Gusta (Likes)</h3>
+                        <p>Interacción dinámica manipulando el DOM para contadores numéricos y respuesta en tiempo real.
+                        </p>
+                        <div class="tags-tecnologias">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">CSS3</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <div class="enlaces-proyecto">
+                            <a href="https://github.com/axelescobar-art/Skillnest_fundamentos_web-1/tree/main/STACK_JS/18_(core)_me_gusta"
+                                target="_blank" rel="noopener">Código Fuente
+                                →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <!-- Demostración en Video -->
+            <div class="tarjeta-video"
+                style="max-width: 800px; width: 100%; margin: 0 auto; padding: 30px; background-color: rgba(10, 15, 25, 0.85); border: 1px solid rgba(0, 195, 255, 0.3); border-radius: 16px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);">
+                <span class="subtitulo-seda">DEMOSTRACIÓN EN VIDEO</span>
+                <h3>Demostración de Proyectos</h3>
+                <p>Muestra interactiva del funcionamiento y la lógica implementada en los trabajos desarrollados.</p>
+
+                <div class="contenedor-video" style="margin-top: 20px;">
+                    <video controls preload="auto" style="width: 100%; height: auto; border-radius: 8px;">
+                        <source src="static/videos/videoxd.mp4" type="video/mp4">
+                        Tu navegador no soporta el reproductor de video.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN CONTACTO -->
+        <section id="contacto" class="seccion">
+            <h2>CONTACTO</h2>
+
+            <div class="contenedor-contacto-doble">
+                <!-- Columna Izquierda: Información -->
+                <div class="tarjeta columna-info">
+                    <h3>¿HABLAMOS?</h3>
+                    <p class="subtitulo-contacto">Puedes ponerte en contacto conmigo a través del formulario o por mis
+                        redes:</p>
+
+                    <div class="lista-contacto">
+                        <a href="mailto:axelescobar802@gmail.com" class="item-contacto">
+                            <div class="icono-contacto">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                    <path
+                                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                                </svg>
+                            </div>
+                            <span>axelescobar802@gmail.com</span>
+                        </a>
+
+                        <a href="https://github.com/axelescobar-art" target="_blank" rel="noopener"
+                            class="item-contacto">
+                            <div class="icono-contacto">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                    <path
+                                        d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+                                </svg>
+                            </div>
+                            <span>github.com/axelescobar-art</span>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/axel-escobar-29807a439/" target="_blank" rel="noopener"
+                            class="item-contacto">
+                            <div class="icono-contacto">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                    <path
+                                        d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.6a1.49 1.49 0 0 0-1.5 1.5 1.49 1.49 0 0 0 1.5 1.49c.82 0 1.5-.67 1.5-1.49a1.49 1.49 0 0 0-1.5-1.5z" />
+                                </svg>
+                            </div>
+                            <span>axel-escobar</span>
+                        </a>
+                    </div>
+
+                    <div class="badge-estado">
+                        ✦ DESARROLLADOR WEB DISPONIBLE ✦
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Formulario -->
+                <div class="tarjeta columna-formulario">
+                    <h3>FORMULARIO DE CONTACTO</h3>
+
+                    <form action="https://formsubmit.co/axelescobar802@gmail.com" method="POST" class="formulario-hk">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_subject" value="¡Nuevo mensaje desde tu Portafolio!">
+
+                        <div class="grupo-input">
+                            <label for="nombre">Nombre Completo</label>
+                            <input type="text" id="nombre" name="Nombre" placeholder="Tu nombre..." required>
+                        </div>
+
+                        <div class="grupo-input">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" name="Correo" placeholder="correo@ejemplo.com" required>
+                        </div>
+
+                        <div class="grupo-input">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="Mensaje" rows="4" placeholder="Escribe tu mensaje aquí..."
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-enviar-hk">
+                            <span>Enviar Mensaje</span>
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="icono-enviar" width="18" height="18">
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Axel Escobar — Inspirado en la Ciudad de las Lágrimas</p>
+    </footer>
+
+    <script src="static/js/script.js"></script>
+</body>
+
+</html>
