@@ -90,18 +90,16 @@ body {
 /* Reemplaza SOLO este bloque en tu CSS */
 .faro {
     position: absolute;
-    width: 250px; 
+    width: 250px;
     height: 250px;
     border-radius: 50%;
-    background: radial-gradient(
-        circle, 
-        rgba(220, 240, 255, 0.7) 0%, 
-        rgba(100, 180, 255, 0.3) 35%, 
-        rgba(30, 80, 160, 0.1) 65%, 
-        rgba(0, 0, 0, 0) 100%
-    );
+    background: radial-gradient(circle,
+            rgba(220, 240, 255, 0.7) 0%,
+            rgba(100, 180, 255, 0.3) 35%,
+            rgba(30, 80, 160, 0.1) 65%,
+            rgba(0, 0, 0, 0) 100%);
     filter: blur(40px);
-    mix-blend-mode: screen; 
+    mix-blend-mode: screen;
     pointer-events: none;
     z-index: 0;
     animation: brilloFaro 6s ease-in-out infinite alternate;
@@ -113,6 +111,7 @@ body {
         opacity: 0.6;
         transform: scale(0.95);
     }
+
     100% {
         opacity: 0.9;
         transform: scale(1.05);
@@ -127,15 +126,20 @@ body {
 
 /* FARO 1 (Arriba a la Izquierda) */
 .faro-izq-2 {
-    top: 15%;            /* Altura: número menor = MÁS ARRIBA / mayor = MÁS ABAJO */
-    left: -2%;           /* Lado: 0% pega al borde / números negativos lo ocultan un poco fuera */
-    animation-delay: 2s; /* Tiempo de parpadeo */
+    top: 15%;
+    /* Altura: número menor = MÁS ARRIBA / mayor = MÁS ABAJO */
+    left: -2%;
+    /* Lado: 0% pega al borde / números negativos lo ocultan un poco fuera */
+    animation-delay: 2s;
+    /* Tiempo de parpadeo */
 }
 
 /* FARO 2 (Abajo a la Izquierda) */
 .faro-izq-1 {
-    top: 75%;            /* Altura: número menor = MÁS ARRIBA / mayor = MÁS ABAJO */
-    left: -2%;           /* Lado: 0% pega al borde / números negativos lo ocultan un poco fuera */
+    top: 75%;
+    /* Altura: número menor = MÁS ARRIBA / mayor = MÁS ABAJO */
+    left: -2%;
+    /* Lado: 0% pega al borde / números negativos lo ocultan un poco fuera */
     animation-delay: 1s;
 }
 
@@ -146,17 +150,23 @@ body {
 
 /* FARO 3 (Arriba a la Derecha) */
 .faro-der-2 {
-    top: 10%;            /* Altura: número menor = MÁS ARRIBA / mayor = MÁS ABAJO */
-    left: auto;          /* Desactiva el lado izquierdo */
-    right: -2%;          /* Lado derecho: 0% pega al borde / números negativos lo ocultan */
+    top: 10%;
+    /* Altura: número menor = MÁS ARRIBA / mayor = MÁS ABAJO */
+    left: auto;
+    /* Desactiva el lado izquierdo */
+    right: -2%;
+    /* Lado derecho: 0% pega al borde / números negativos lo ocultan */
     animation-delay: 6s;
 }
 
 /* FARO 4 (Abajo a la Derecha) */
 .faro-der-1 {
-    top: 70%;            /* Altura: número menor = MÁS ARRIBA / mayor = MÁS ABAJO */
-    left: auto;          /* Desactiva el lado izquierdo */
-    right: -2%;          /* Lado derecho: 0% pega al borde / números negativos lo ocultan */
+    top: 70%;
+    /* Altura: número menor = MÁS ARRIBA / mayor = MÁS ABAJO */
+    left: auto;
+    /* Desactiva el lado izquierdo */
+    right: -2%;
+    /* Lado derecho: 0% pega al borde / números negativos lo ocultan */
     animation-delay: 4s;
 }
 
@@ -865,6 +875,7 @@ main {
     width: 18px;
     height: 18px;
 }
+
 /* ===================================================
    FOOTER
    =================================================== */
@@ -922,5 +933,50 @@ footer {
     .contenedor-contacto-doble {
         grid-template-columns: 1fr;
     }
+}
+
+.contenedor-video {
+    max-width: 750px;
+    /* Ajusta este valor para cambiar el tamaño máximo */
+    width: 100%;
+    margin: 0 auto;
+    /* Centra el video */
+}
+
+.contenedor-video video {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    /* Opcional: bordes un poco redondeados */
+}
+
+.tarjeta-video {
+    max-width: 800px;
+    /* Ajusta este número si la quieres un poco más grande o pequeña */
+    width: 100%;
+    margin: 0 auto;
+    /* Esto centra la tarjeta completa */
+}
+
+.contenedor-video,
+.contenedor-video video {
+    width: 100%;
+    height: auto;
+}
+
+.tarjeta-video {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px;
+    /* Espacio interno para que el texto no toque el borde */
+    background-color: rgba(10, 15, 25, 0.85);
+    /* Fondo oscuro semitransparente */
+    border: 1px solid rgba(0, 195, 255, 0.3);
+    /* Borde sutil brillante estilo cyberpunk */
+    border-radius: 16px;
+    /* Esquinas redondeadas */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    /* Sombra para darle profundidad */
 }
 
